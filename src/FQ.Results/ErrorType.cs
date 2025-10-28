@@ -22,5 +22,29 @@ public enum ErrorType
     /// <summary>Rate-limiting or quota exceeded.</summary>
     TooManyRequests = 7,
     /// <summary>Optimistic concurrency violation.</summary>
-    Concurrency = 8
+    Concurrency = 8,
+    /// <summary>
+    /// Request is invalid.
+    /// </summary>
+    BadRequest = 9,
+    /// <summary>
+    /// Request cannot be processed.
+    /// </summary>
+    Unprocessable = 10,
+    /// <summary>
+    /// Internal error has occured.
+    /// </summary>
+    Internal = 11,
+    /// <summary>
+    /// Upstream is not available.
+    /// </summary>
+    UpstreamUnavailable = 12,
+    /// <summary>
+    /// Bad gateway.
+    /// </summary>
+    BadGateway = 13,
+    /// <summary>
+    /// Gateway has timed out.
+    /// </summary>
+    GatewayTimeout = 14
 }

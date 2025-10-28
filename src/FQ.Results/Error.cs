@@ -27,20 +27,54 @@ public sealed record Error(
     IReadOnlyDictionary<string, object>? Metadata = null)
 {
     /// <summary>
-    /// Creates a <see cref="Error"/> categorized as <see cref="ErrorType.NotFound"/>.
+    /// Creates a <see cref="ErrorType.BadRequest"/> error (HTTP 400).
+    /// Use when the client sent malformed or invalid input.
     /// </summary>
-    /// <param name="code">Machine-readable code.</param>
-    /// <param name="message">Human-readable message.</param>
-    /// <param name="target">Optional target (e.g. entity or field name).</param>
-    /// <param name="meta">Optional metadata payload.</param>
-    public static Error NotFound(string code, string message, string? target = null, IReadOnlyDictionary<string, object>? meta = null)
-        => new(code, message, ErrorType.NotFound, target, meta);
+    public static Error BadRequest(string code = "bad_request", string? message = null, string? target = null, IReadOnlyDictionary<string, object>? metadata = null)
+        => new(code, message ?? "The request could not be understood or was missing required parameters.", ErrorType.BadRequest, target, metadata);
+    
+    /// <summary>
+    /// Creates a <see cref="ErrorType.NotFound"/> error (HTTP 404).
+    /// </summary>
+    public static Error NotFound(string code = "not_found", string? message = null, string? target = null, IReadOnlyDictionary<string, object>? metadata = null)
+        => new(code, message ?? "The requested resource was not found.", ErrorType.NotFound, target, metadata);
 
     /// <summary>
-    /// Creates a <see cref="Error"/> categorized as <see cref="ErrorType.Conflict"/>.
+    /// Creates a <see cref="ErrorType.Conflict"/> error (HTTP 409).
     /// </summary>
-    public static Error Conflict(string code, string message, string? target = null, IReadOnlyDictionary<string, object>? meta = null)
-        => new(code, message, ErrorType.Conflict, target, meta);
+    public static Error Conflict(string code = "conflict", string? message = null, string? target = null, IReadOnlyDictionary<string, object>? metadata = null)
+        => new(code, message ?? "A conflict occurred with the current state of the resource.", ErrorType.Conflict, target, metadata);
+
+    /// <summary>
+    /// Creates an <see cref="ErrorType.Unprocessable"/> error (HTTP 422).
+    /// Use when the request was syntactically valid but semantically invalid.
+    /// </summary>
+    public static Error Unprocessable(string code = "unprocessable", string? message = null, string? target = null, IReadOnlyDictionary<string, object>? metadata = null)
+        => new(code, message ?? "The server understands the content type but cannot process the instructions.", ErrorType.Unprocessable, target, metadata);
+
+    /// <summary>
+    /// Creates an <see cref="ErrorType.Internal"/> error (HTTP 500).
+    /// </summary>
+    public static Error Internal(string code = "internal_error", string? message = null, string? target = null, IReadOnlyDictionary<string, object>? metadata = null)
+        => new(code, message ?? "An unexpected error occurred on the server.", ErrorType.Internal, target, metadata);
+
+    /// <summary>
+    /// Creates an <see cref="ErrorType.UpstreamUnavailable"/> error (HTTP 503).
+    /// </summary>
+    public static Error UpstreamUnavailable(string provider, string? message = null, string? target = null, IReadOnlyDictionary<string, object>? metadata = null)
+        => new($"{provider}_unavailable", message ?? $"{provider} is temporarily unavailable.", ErrorType.UpstreamUnavailable, target, metadata);
+
+    /// <summary>
+    /// Creates an <see cref="ErrorType.BadGateway"/> error (HTTP 502).
+    /// </summary>
+    public static Error BadGateway(string provider, string? message = null, string? target = null, IReadOnlyDictionary<string, object>? metadata = null)
+        => new($"{provider}_bad_gateway", message ?? $"{provider} returned an invalid response.", ErrorType.BadGateway, target, metadata);
+
+    /// <summary>
+    /// Creates an <see cref="ErrorType.GatewayTimeout"/> error (HTTP 504).
+    /// </summary>
+    public static Error GatewayTimeout(string provider, string? message = null, string? target = null, IReadOnlyDictionary<string, object>? metadata = null)
+        => new($"{provider}_timeout", message ?? $"{provider} did not respond in time.", ErrorType.GatewayTimeout, target, metadata);
 
     /// <summary>
     /// Creates a <see cref="Error"/> categorized as <see cref="ErrorType.Unauthorized"/>.

@@ -1,3 +1,10 @@
+# [1.0.0-alpha.8](https://github.com/futeq/futeq-core-packages/compare/v1.0.0-alpha.7...v1.0.0-alpha.8) (2025-10-28)
+
+
+### Bug Fixes
+
+* Separating scripts from the json file ([7893cfc](https://github.com/futeq/futeq-core-packages/commit/7893cfcc1e7b4de5add7aaebf0577672981de7d6))
+
 # [1.0.0-alpha.7](https://github.com/futeq/futeq-core-packages/compare/v1.0.0-alpha.6...v1.0.0-alpha.7) (2025-10-28)
 
 

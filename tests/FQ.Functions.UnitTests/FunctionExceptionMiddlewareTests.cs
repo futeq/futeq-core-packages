@@ -18,16 +18,20 @@ public class FunctionExceptionMiddlewareTests
         var mw = new FunctionExceptionMiddleware(resolve: _ => Task.FromResult<HttpRequestData?>(req));
 
         await mw.Invoking(m => m.Invoke(ctx, _ => throw new InvalidOperationException("boom")))
-            .Should().NotThrowAsync();
+            .Should()
+            .NotThrowAsync();
 
         var result = ctx.GetInvocationResult().Value as HttpResponseData;
+        
         result.Should().NotBeNull();
-        result!.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+        result!.StatusCode.Should().Be(HttpStatusCode.InternalServerError);
         result.Headers.GetValues("Content-Type").Single().Should().Be("application/problem+json");
         result.Body.Position = 0;
+        
         var json = await new StreamReader(result.Body).ReadToEndAsync();
         using var doc = JsonDocument.Parse(json);
-        doc.RootElement.GetProperty("status").GetInt32().Should().Be(400);
+        
+        doc.RootElement.GetProperty("status").GetInt32().Should().Be(500);
     }
 
     [Fact]

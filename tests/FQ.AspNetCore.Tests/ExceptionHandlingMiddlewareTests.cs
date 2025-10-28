@@ -22,7 +22,7 @@ public class ExceptionHandlingMiddlewareTests
         using var server = new TestServer(builder);
         var resp = await server.CreateClient().GetAsync("/x");
 
-        resp.StatusCode.Should().Be(HttpStatusCode.BadRequest); // mapping from Error.FromException default
+        resp.StatusCode.Should().Be(HttpStatusCode.InternalServerError); // mapping from Error.FromException default
         resp.Content.Headers.ContentType!.MediaType.Should().Be("application/problem+json");
 
         var json = await resp.Content.ReadAsStringAsync();

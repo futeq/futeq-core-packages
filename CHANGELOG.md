@@ -1,3 +1,15 @@
+# [1.0.0-alpha.9](https://github.com/futeq/futeq-core-packages/compare/v1.0.0-alpha.8...v1.0.0-alpha.9) (2025-10-28)
+
+
+### Bug Fixes
+
+* Fixing unit tests ([42a187d](https://github.com/futeq/futeq-core-packages/commit/42a187d2997dd76d04a67cbe7e2f3b8aa6344110))
+
+
+### Features
+
+* Adding extensive error types ([d0458ac](https://github.com/futeq/futeq-core-packages/commit/d0458acc3d14a0a86ecf856b0202ba7ad7b353ac))
+
 # [1.0.0-alpha.8](https://github.com/futeq/futeq-core-packages/compare/v1.0.0-alpha.7...v1.0.0-alpha.8) (2025-10-28)
 
 

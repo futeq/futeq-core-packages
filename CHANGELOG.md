@@ -1,3 +1,11 @@
+# [1.0.0-alpha.3](https://github.com/futeq/futeq-core-packages/compare/v1.0.0-alpha.2...v1.0.0-alpha.3) (2025-10-28)
+
+
+### Bug Fixes
+
+* Version bump ([5d64dd7](https://github.com/futeq/futeq-core-packages/commit/5d64dd7ca33248d1975a78c657528d5e25ae42b5))
+* Version bump ([b0b5673](https://github.com/futeq/futeq-core-packages/commit/b0b5673d7c0b9d51c65c130ab71eeb54393ebe28))
+
 # [1.0.0-alpha.2](https://github.com/futeq/futeq-core-packages/compare/v1.0.0-alpha.1...v1.0.0-alpha.2) (2025-10-28)
 
 

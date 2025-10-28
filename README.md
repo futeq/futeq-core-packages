@@ -61,7 +61,6 @@ var shape = e1.ToProblemShape("/api/users/1");
 
 Console.WriteLine(shape.Status);  // 400
 Console.WriteLine(shape.Type);    // urn:problem-type:validation
-Console.WriteLine(shape.Detail);  // "Invalid format"
 ```
 
 ### JSON-friendly model

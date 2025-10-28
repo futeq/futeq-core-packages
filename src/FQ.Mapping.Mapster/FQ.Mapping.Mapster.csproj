@@ -19,7 +19,7 @@
         <PackageTags>futeq;results;error;mapping;cqrs;clean-architecture</PackageTags>
         <RepositoryUrl>https://github.com/futeq/futeq-core-packages</RepositoryUrl>
         <PackageProjectUrl>https://github.com/futeq/futeq-core-packages</PackageProjectUrl>
-        <PackageReadmeFile>FREADME.md</PackageReadmeFile>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
         <PackageIcon>icon.png</PackageIcon>
         <RepositoryType>git</RepositoryType>

@@ -1,3 +1,10 @@
+# [1.0.0-alpha.6](https://github.com/futeq/futeq-core-packages/compare/v1.0.0-alpha.5...v1.0.0-alpha.6) (2025-10-28)
+
+
+### Bug Fixes
+
+* fixing release pipeline ([4233de1](https://github.com/futeq/futeq-core-packages/commit/4233de1d516ec97c1e5ae77e6b9dc4a2ece0183a))
+
 # [1.0.0-alpha.5](https://github.com/futeq/futeq-core-packages/compare/v1.0.0-alpha.4...v1.0.0-alpha.5) (2025-10-28)
 
 

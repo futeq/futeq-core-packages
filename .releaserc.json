@@ -8,7 +8,7 @@
     "@semantic-release/release-notes-generator",
     ["@semantic-release/changelog", { "changelogFile": "CHANGELOG.md" }],
     ["@semantic-release/exec", {
-      "prepareCmd": "bash -lc \"set -euo pipefail; mkdir -p artifacts; for csproj in src/FQ.*/*.csproj; do dotnet pack \\\"$csproj\\\" -c Release -o artifacts /p:ContinuousIntegrationBuild=true /p:PackageVersion=${nextRelease.version}; done\"",
+      "prepareCmd": "bash -lc \"set -euo pipefail; mkdir -p artifacts; dotnet restore; found=0; while IFS= read -r -d '' csproj; do echo Packing: \\\"$csproj\\\"; dotnet pack \\\"$csproj\\\" -c Release -o artifacts /p:ContinuousIntegrationBuild=true /p:PackageVersion=${nextRelease.version}; found=$((found+1)); done < <(find src -type f -name '*.csproj' -print0); if [ \\\"$found\\\" -eq 0 ]; then echo 'No .csproj found under src'; exit 1; fi; ls -1 artifacts || true\"",
       "publishCmd": "bash -lc \"set -euo pipefail; shopt -s nullglob; set -- artifacts/*.nupkg; [ $# -gt 0 ] || { echo 'No packages to publish'; exit 1; }; for f in \\\"$@\\\"; do echo Pushing \\\"$f\\\"; dotnet nuget push \\\"$f\\\" --api-key \\\"$NUGET_API_KEY\\\" --source https://api.nuget.org/v3/index.json --skip-duplicate; done\""
     }],
     ["@semantic-release/git", { "assets": ["CHANGELOG.md"], "message": "chore(release): ${nextRelease.version} [skip ci]\\n\\n${nextRelease.notes}" }],

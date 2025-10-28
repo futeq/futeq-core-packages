@@ -1,7 +1,7 @@
 ﻿namespace FQ.AspNetCore;
 
 /// <summary>Options controlling correlation ID behavior.</summary>
-public sealed class CorrelationOptions
+public sealed class CorrelationIdOptions
 {
     /// <summary>Request header to read/write correlation ID. Default: "X-Correlation-Id".</summary>
     public string HeaderName { get; set; } = "X-Correlation-Id";

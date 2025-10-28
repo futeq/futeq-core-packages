@@ -17,6 +17,7 @@ public class ProjectionHelpersTests
         var list = q.ToList();
 
         list.Should().ContainSingle();
+
         list[0].Name.Should().Be("Neo");
     }
 
@@ -30,6 +31,7 @@ public class ProjectionHelpersTests
         }.AsQueryable();
 
         var q = ProjectionHelpers.ProjectToInMemory<User, UserDto>(source, mapper);
+
         q.Single().Id.Should().Be(3);
     }
 }

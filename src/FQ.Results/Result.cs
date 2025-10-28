@@ -90,6 +90,8 @@ public readonly record struct Result
         return Ok();
     }
 
+    internal static Result FromJsonResult(JsonResult jsonResult) => new (jsonResult.IsSuccess, jsonResult.Error);
+
     /// <inheritdoc />
     public override string ToString() => IsSuccess ? "Result: Ok" : $"Result: Fail ({Error!.Type}/{Error.Code})";
 }

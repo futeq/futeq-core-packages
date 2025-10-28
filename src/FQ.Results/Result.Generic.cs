@@ -136,6 +136,8 @@ public readonly record struct Result<T>
             ? new ProblemShape("OK", (int)HttpStatusCode.OK, "about:blank", "Success", instance)
             : Error!.ToProblemShape(instance);
 
+    internal static Result<T> FromJsonResult(JsonResult<T> jsonResult) => new (jsonResult.IsSuccess, jsonResult.Value, jsonResult.Error);
+    
     /// <inheritdoc />
     public override string ToString()
         => IsSuccess ? $"Result: Ok<{typeof(T).Name}>"

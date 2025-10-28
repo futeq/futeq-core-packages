@@ -36,6 +36,7 @@ public static class ErrorHttpMapping
     {
         var status = (int)error.ToStatusCode();
         var errors = Validation.TryExtractFieldMap(error);
+        
         return new ProblemShape(
             Title: error.Type.ToString(),
             Status: status,

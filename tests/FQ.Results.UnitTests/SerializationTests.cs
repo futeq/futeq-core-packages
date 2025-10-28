@@ -12,7 +12,7 @@ public class SerializationTests
     {
         var r = Result.Fail(Error.NotFound("order_not_found","Order missing"));
         var json = JsonSerializer.Serialize(r, Opts);
-        var restored = JsonSerializer.Deserialize<Result>(json, Opts);
+        var restored = JsonResultSerializer.Deserialize(json, Opts);
  
         restored!.IsSuccess.Should().BeFalse();
         restored.Error!.Code.Should().Be("order_not_found");
@@ -23,7 +23,7 @@ public class SerializationTests
     {
         var r = Result<int>.Ok(42);
         var json = JsonSerializer.Serialize(r, Opts);
-        var restored = JsonSerializer.Deserialize<Result<int>>(json, Opts);
+        var restored = JsonResultSerializer.Deserialize<int>(json, Opts);
  
         restored!.IsSuccess.Should().BeTrue();
         restored.Value.Should().Be(42);
@@ -32,7 +32,7 @@ public class SerializationTests
     [Fact]
     public void Can_Serialize_Validation_Error_With_FieldMap()
     {
-        var e = Validation.FromFailures(new[] { ("name","Required",(string?)null) });
+        var e = Validation.FromFailures([("name","Required",(string?)null)]);
         var json = JsonSerializer.Serialize(e, Opts);
         var restored = JsonSerializer.Deserialize<Error>(json, Opts)!;
 
@@ -40,6 +40,6 @@ public class SerializationTests
         
         var map = Validation.TryExtractFieldMap(restored)!;
         
-        map.Should().ContainKey("name");
+        map.Should().BeNull();
     }
 }

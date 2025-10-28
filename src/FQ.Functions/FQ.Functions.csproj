@@ -6,6 +6,34 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+     <PropertyGroup> 
+        <PackageId>FQ.Functions</PackageId>
+        <Version>1.0.0</Version>
+        <Authors>Futeq s.r.o.</Authors>
+        <Company>Futeq s.r.o.</Company>
+
+        <!-- Descriptive metadata -->
+        <Title>FQ.Functions</Title>
+        <Description>
+          Azure Functions (isolated worker) utilities for FQ Framework.
+          Adds correlation ID, idempotency, and exception-to-ProblemDetails middleware,
+          plus WriteResultAsync extensions for seamless FQ.Results integration in HTTP triggers.
+          Targets Microsoft.Azure.Functions.Worker 2.2+ and .NET 9+.
+        </Description>
+        <PackageTags>futeq;results;error;problem-details;cqrs;clean-architecture;azure;azure-functions</PackageTags>
+        <RepositoryUrl>https://github.com/futeq/futeq-core-packages</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/futeq/futeq-core-packages</PackageProjectUrl>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <PackageIcon>icon.png</PackageIcon>
+        <RepositoryType>git</RepositoryType>
+
+        <!-- Optional packaging controls -->
+        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+        <IncludeSymbols>false</IncludeSymbols>
+        <IncludeSource>false</IncludeSource>
+    </PropertyGroup>
+
     <ItemGroup>
       <PackageReference Include="Microsoft.Azure.Functions.Worker" Version="2.2.0" />
       <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Http" Version="3.3.0" />
@@ -15,6 +43,12 @@
     <ItemGroup>
       <ProjectReference Include="..\FQ.Cqrs\FQ.Cqrs.csproj" />
       <ProjectReference Include="..\FQ.Results\FQ.Results.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="../../README.md" Pack="true" PackagePath="" />
+        <None Include="../../LICENSE" Pack="true" PackagePath="" />
+        <None Include="../../icon.png" Pack="true" PackagePath="" />
     </ItemGroup>
 
 </Project>

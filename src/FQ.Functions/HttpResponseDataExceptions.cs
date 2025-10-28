@@ -18,14 +18,18 @@ public static class HttpResponseDataExtensions
         }
 
         var p = result.ToProblemShape(req.Url.AbsolutePath);
+        
         res.StatusCode = (HttpStatusCode)p.Status;
         res.Headers.Add("Content-Type", "application/problem+json");
 
         // Include correlation id if present on request
         if (req.Headers.TryGetValues("X-Correlation-Id", out var vals))
+        {
             res.Headers.Add("X-Correlation-Id", vals);
+        }
 
         await res.WriteStringAsync(JsonSerializer.Serialize(p, json ?? new(JsonSerializerDefaults.Web)));
+        
         return res;
     }
 
@@ -38,18 +42,29 @@ public static class HttpResponseDataExtensions
         {
             res.StatusCode = HttpStatusCode.OK;
             res.Headers.Add("Content-Type", "application/json; charset=utf-8");
+
             if (req.Headers.TryGetValues("X-Correlation-Id", out var vals))
+            {
                 res.Headers.Add("X-Correlation-Id", vals);
+            }
+            
             await res.WriteStringAsync(JsonSerializer.Serialize(result.Value, opts), Encoding.UTF8);
+            
             return res;
         }
 
         var p = result.ToProblemShape(req.Url.AbsolutePath);
+        
         res.StatusCode = (HttpStatusCode)p.Status;
         res.Headers.Add("Content-Type", "application/problem+json");
+
         if (req.Headers.TryGetValues("X-Correlation-Id", out var vals2))
+        {
             res.Headers.Add("X-Correlation-Id", vals2);
+        }
+        
         await res.WriteStringAsync(JsonSerializer.Serialize(p, opts), Encoding.UTF8);
+        
         return res;
     }
 }

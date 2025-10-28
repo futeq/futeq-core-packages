@@ -1,5 +1,4 @@
 using FluentAssertions;
-using FQ.AspNetCore.Correlation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -11,21 +10,21 @@ namespace FQ.AspNetCore.Tests;
 
 public class CorrelationIdMiddlewareTests
 {
-    private static TestServer BuildServer(Action<CorrelationOptions>? cfg = null)
+    private static TestServer BuildServer(Action<CorrelationIdOptions>? cfg = null)
     {
         return new TestServer(new WebHostBuilder()
             .ConfigureServices(s =>
             {
-                s.AddOptions<CorrelationOptions>().Configure(o => cfg?.Invoke(o));
+                s.AddOptions<CorrelationIdOptions>().Configure(o => cfg?.Invoke(o));
             })
             .Configure(app =>
             {
-                var opts = app.ApplicationServices.GetRequiredService<IOptions<CorrelationOptions>>();
+                var opts = app.ApplicationServices.GetRequiredService<IOptions<CorrelationIdOptions>>();
                 app.UseMiddleware<CorrelationIdMiddleware>();
                 app.Run(async ctx =>
-                {
-                    // echo header
+                { 
                     var id = ctx.Response.Headers[opts.Value.HeaderName].ToString();
+                    
                     await ctx.Response.WriteAsync(string.IsNullOrEmpty(id) ? "no-id" : id);
                 });
             }));

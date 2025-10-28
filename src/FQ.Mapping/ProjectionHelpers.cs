@@ -13,16 +13,16 @@ public static class ProjectionHelpers
         IObjectMapper mapper)
         => source.Cast<object>()
             .AsEnumerable()
-            .Select(x => mapper.Map<object, TDestination>(x))
+            .Select(mapper.Map<object, TDestination>)
             .AsQueryable();
 
     /// <summary>
-    /// Builds a naive projection for a strongly-typed source sequence.
+    /// Builds a naive projection for a strongly typed source sequence.
     /// </summary>
     public static IQueryable<TDestination> ProjectToInMemory<TSource, TDestination>(
         IQueryable<TSource> source,
         IObjectMapper mapper)
         => source.AsEnumerable()
-            .Select(x => mapper.Map<TSource, TDestination>(x))
+            .Select(mapper.Map<TSource, TDestination>)
             .AsQueryable();
 }

@@ -1,3 +1,4 @@
+using System.Text;
 using System.Text.Json;
 using FQ.Results;
 using MediatR;
@@ -47,7 +48,7 @@ public sealed class IdempotencyBehavior<TRequest> : IPipelineBehavior<TRequest, 
         
         if (found.Found && found.Payload is not null)
         {
-            return found.Payload.TryDeserializeFromJson<Result>(out var restored, _options.JsonSerializerOptions) 
+            return found.Payload.TryDeserializeResultFromJson(out var restored, _options.JsonSerializerOptions) 
                 ? restored 
                 : Result.Fail(Error.Conflict("idempotency_deser_failed", "Failed to deserialize cached result"));
         }
@@ -106,9 +107,9 @@ public sealed class IdempotencyBehavior<TRequest, TResponse> : IPipelineBehavior
         var found = await _store.TryGetAsync(key, requestType, ct);
         
         if (found is { Found: true, Payload: not null })
-        {
-            return found.Payload.TryDeserializeFromJson<Result<TResponse>>(out var restored, _options.JsonSerializerOptions) 
-                ? restored 
+        { 
+            return found.Payload.TryDeserializeResultFromJson<TResponse>(out var restored, _options.JsonSerializerOptions) 
+                ? restored! 
                 : Result<TResponse>.Fail(Error.Conflict("idempotency_deser_failed", "Failed to deserialize cached result"));
         }
 

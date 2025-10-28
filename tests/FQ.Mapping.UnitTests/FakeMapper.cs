@@ -5,9 +5,10 @@ internal sealed class FakeMapper : IObjectMapper
     public TDestination Map<TSource, TDestination>(TSource source)
     {
         if (source is null) return default!;
+        
         // very dumb “convention” mapper only for tests
         var src = source!;
-        if (typeof(TSource).Name is "User" && typeof(TDestination).Name is "UserDto")
+        if ((typeof(TSource).Name is "Object" || typeof(TSource).Name is "User") && typeof(TDestination).Name is "UserDto")
         {
             dynamic d = src!;
             return (TDestination)(object)new UserDto { Id = d.Id, Name = d.Name };

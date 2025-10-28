@@ -22,7 +22,7 @@ public static class ServiceCollectionExtensions
     /// <remarks>
     /// Behavior order (outermost → innermost): Performance → Authorization → Validation → Idempotency → UnitOfWork → Handler → DomainEvents → CacheInvalidation → Caching.
     /// </remarks>
-    public static IServiceCollection AddCqrs(this IServiceCollection services, Assembly applicationAssembly)
+    public static IServiceCollection AddCqrsUtilities(this IServiceCollection services, Assembly applicationAssembly)
     {
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(applicationAssembly));
         services.AddValidatorsFromAssembly(applicationAssembly);

@@ -5,6 +5,33 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
+
+    <PropertyGroup> 
+        <PackageId>FQ.AspNetCore</PackageId>
+        <Version>1.0.0</Version>
+        <Authors>Futeq s.r.o.</Authors>
+        <Company>Futeq s.r.o.</Company>
+
+        <!-- Descriptive metadata -->
+        <Title>FQ.AspNetCore</Title>
+        <Description>
+            ASP.NET Core utilities providing unified result mapping, correlation ID propagation,
+            version headers, and automatic RFC 7807 ProblemDetails responses for FQ.Results.
+            Includes middleware, filters, and IActionResult extensions for controllers and minimal APIs.
+        </Description>
+        <PackageTags>futeq;results;error;problem-details;cqrs;clean-architecture;asp-net;asp-net-core</PackageTags>
+        <RepositoryUrl>https://github.com/futeq/futeq-core-packages</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/futeq/futeq-core-packages</PackageProjectUrl>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <PackageIcon>icon.png</PackageIcon>
+        <RepositoryType>git</RepositoryType>
+
+        <!-- Optional packaging controls -->
+        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+        <IncludeSymbols>false</IncludeSymbols>
+        <IncludeSource>false</IncludeSource>
+    </PropertyGroup>
     
     <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App" />
@@ -15,4 +42,9 @@
       <ProjectReference Include="..\FQ.Results\FQ.Results.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+        <None Include="../../README.md" Pack="true" PackagePath="" />
+        <None Include="../../LICENSE" Pack="true" PackagePath="" />
+        <None Include="../../icon.png" Pack="true" PackagePath="" />
+    </ItemGroup>
 </Project>

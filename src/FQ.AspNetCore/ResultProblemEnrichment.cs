@@ -1,4 +1,3 @@
-using FQ.AspNetCore.Correlation;
 using FQ.Results;
 using Microsoft.AspNetCore.Http;
 

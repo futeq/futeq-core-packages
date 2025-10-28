@@ -5,16 +5,16 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
-    
+
     <PropertyGroup> 
-        <PackageId>FQ.Results</PackageId>
+        <PackageId>FQ.Functions.Testing</PackageId>
         <Version>1.0.0</Version>
         <Authors>Futeq s.r.o.</Authors>
         <Company>Futeq s.r.o.</Company>
 
         <!-- Descriptive metadata -->
-        <Title>FQ.Results</Title>
-        <Description>Core result and error primitives for FQ Framework (.NET 9): unified success/error handling, RFC 7807 mapping, JSON-friendly design.</Description>
+        <Title>FQ.Functions.Testing</Title>
+        <Description>Helper utilities for Unit Testing Azure functions.</Description>
         <PackageTags>futeq;results;error;problem-details;cqrs;clean-architecture</PackageTags>
         <RepositoryUrl>https://github.com/futeq/futeq-core-packages</RepositoryUrl>
         <PackageProjectUrl>https://github.com/futeq/futeq-core-packages</PackageProjectUrl>
@@ -28,6 +28,11 @@
         <IncludeSymbols>false</IncludeSymbols>
         <IncludeSource>false</IncludeSource>
     </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="NSubstitute" Version="5.1.0" />
+        <PackageReference Include="Microsoft.Azure.Functions.Worker" Version="2.2.0" />
+    </ItemGroup>
 
     <ItemGroup>
         <None Include="../../README.md" Pack="true" PackagePath="" />

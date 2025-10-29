@@ -1,3 +1,4 @@
+using FQ.Functions.Accessors;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -16,9 +17,12 @@ public static class ServiceCollectionExtensions
         services.AddSingleton(c);
         services.AddSingleton(i);
 
+        services.AddSingleton<IFunctionContextAccessor, FunctionContextAccessor>();
+
         services.AddSingleton<FunctionExceptionMiddleware>();
         services.AddSingleton<CorrelationIdMiddleware>();
         services.AddSingleton<IdempotencyMiddleware>();
+        services.AddSingleton<FunctionContextAccessorMiddleware>();
 
         services.AddScoped<HttpIdempotencyKeyAccessor>();
         services.AddScoped<ICorrelationContext>(_ => new CorrelationContext(null));

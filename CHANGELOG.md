@@ -1,3 +1,10 @@
+# [1.0.0-alpha.11](https://github.com/futeq/futeq-core-packages/compare/v1.0.0-alpha.10...v1.0.0-alpha.11) (2025-10-29)
+
+
+### Bug Fixes
+
+* fixing missing DI registrations ([b14df65](https://github.com/futeq/futeq-core-packages/commit/b14df6501e77c8af6e31324522fe019025687f25))
+
 # [1.0.0-alpha.10](https://github.com/futeq/futeq-core-packages/compare/v1.0.0-alpha.9...v1.0.0-alpha.10) (2025-10-29)
 
 

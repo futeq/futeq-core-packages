@@ -1,3 +1,10 @@
+# [1.0.0-alpha.12](https://github.com/futeq/futeq-core-packages/compare/v1.0.0-alpha.11...v1.0.0-alpha.12) (2025-10-29)
+
+
+### Bug Fixes
+
+* fixing caching behavior for MediatR pipeline ([9256e35](https://github.com/futeq/futeq-core-packages/commit/9256e350b568b6779fa9b66d1faadf2f12364b46))
+
 # [1.0.0-alpha.11](https://github.com/futeq/futeq-core-packages/compare/v1.0.0-alpha.10...v1.0.0-alpha.11) (2025-10-29)
 
 

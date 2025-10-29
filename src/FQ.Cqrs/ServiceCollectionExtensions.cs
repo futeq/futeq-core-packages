@@ -1,6 +1,7 @@
 using System.Reflection;
 using FluentValidation;
 using FQ.Cqrs.Behaviors;
+using FQ.Cqrs.Caching;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -27,14 +28,17 @@ public static class ServiceCollectionExtensions
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(applicationAssembly));
         services.AddValidatorsFromAssembly(applicationAssembly);
 
-        services.AddScoped(typeof(IPipelineBehavior<,>), typeof(PerformanceBehavior<,>));
-        services.AddScoped(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));
-        services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
-        services.AddScoped(typeof(IPipelineBehavior<,>), typeof(IdempotencyBehavior<,>));
-        services.AddScoped(typeof(IPipelineBehavior<,>), typeof(UnitOfWorkBehavior<,>));
-        services.AddScoped(typeof(IPipelineBehavior<,>), typeof(DomainEventsBehavior<,>));
-        services.AddScoped(typeof(IPipelineBehavior<,>), typeof(CacheInvalidationBehavior<,>));
-        services.AddScoped(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(IdempotencyBehavior<,>));
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));   
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnitOfWorkBehavior<,>));
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(DomainEventsBehavior<,>));
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CacheInvalidationBehavior<,>));
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CacheInvalidationBehavior<>)); 
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(PerformanceBehavior<,>));
+
+        services.AddSingleton<IQueryCache, NoOpQueryCache>();
 
         services.AddSingleton<IClock, SystemClock>();
         services.AddSingleton(new IdempotencyOptions());

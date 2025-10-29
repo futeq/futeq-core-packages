@@ -1,6 +1,5 @@
 using FQ.Functions.Accessors;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
 namespace FQ.Functions;
 
@@ -16,9 +15,9 @@ public static class ServiceCollectionExtensions
 
         services.AddSingleton(c);
         services.AddSingleton(i);
-
+        
         services.AddSingleton<IFunctionContextAccessor, FunctionContextAccessor>();
-
+        
         services.AddSingleton<FunctionExceptionMiddleware>();
         services.AddSingleton<CorrelationIdMiddleware>();
         services.AddSingleton<IdempotencyMiddleware>();

@@ -1,12 +1,13 @@
 using FluentAssertions;
 using FQ.Functions.Testing;
+using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Options;
 
 namespace FQ.Functions.UnitTests;
 
 public class IdempotencyMiddlewareTests
-{
+{ 
     [Fact]
     public async Task Captures_Idempotency_Key()
     {
@@ -21,8 +22,18 @@ public class IdempotencyMiddlewareTests
 
         await mw.Invoke(ctx, _ => Task.CompletedTask);
 
-        var accessor = new HttpIdempotencyKeyAccessor(ctx);
+        var accessor = new HttpIdempotencyKeyAccessor(new FakeContextAccessor(ctx));
         
         accessor.GetKey().Should().Be("IDEMP-1");
+    }
+
+    private class FakeContextAccessor : IFunctionContextAccessor
+    {
+        public FunctionContext? Current { get; set; }
+        
+        public FakeContextAccessor(FunctionContext context)
+        {
+            Current = context;
+        } 
     }
 }

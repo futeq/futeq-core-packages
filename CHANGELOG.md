@@ -1,3 +1,10 @@
+# [1.0.0-alpha.10](https://github.com/futeq/futeq-core-packages/compare/v1.0.0-alpha.9...v1.0.0-alpha.10) (2025-10-29)
+
+
+### Bug Fixes
+
+* Updating context accessor for azure functions ([f501e40](https://github.com/futeq/futeq-core-packages/commit/f501e4048937848bebf43042e4dffdc494648221))
+
 # [1.0.0-alpha.9](https://github.com/futeq/futeq-core-packages/compare/v1.0.0-alpha.8...v1.0.0-alpha.9) (2025-10-28)
 
 

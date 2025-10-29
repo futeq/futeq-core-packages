@@ -13,6 +13,7 @@ This ecosystem includes:
 | **FQ.Functions** | Azure Functions utilities (correlation, idempotency, exception handling, result writers) |
 | **FQ.Mapping** | Tiny abstraction over object mapping with first‑class `Result<T>` support |
 
+
 All libraries target **.NET 9** and work with:
 - **MediatR 13.1+**
 - **Microsoft.Azure.Functions.Worker 2.2+**

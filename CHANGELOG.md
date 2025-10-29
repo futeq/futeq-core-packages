@@ -1,3 +1,10 @@
+# [1.0.0-alpha.13](https://github.com/futeq/futeq-core-packages/compare/v1.0.0-alpha.12...v1.0.0-alpha.13) (2025-10-29)
+
+
+### Bug Fixes
+
+* Fix commit to bump version ([b4e9b81](https://github.com/futeq/futeq-core-packages/commit/b4e9b8195ef0fb03f2c0d22e10732e59184cf413))
+
 # [1.0.0-alpha.12](https://github.com/futeq/futeq-core-packages/compare/v1.0.0-alpha.11...v1.0.0-alpha.12) (2025-10-29)
 
 
